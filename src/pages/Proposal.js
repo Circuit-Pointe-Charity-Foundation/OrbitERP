@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../components/Header";
 import KanbanBoard from "../components/KanbanBoard";
 
-const ProposalTracker = () => {
+const Proposal = () => {
   return (
     <>
       <Header />
@@ -11,4 +11,4 @@ const ProposalTracker = () => {
   );
 };
 
-export default ProposalTracker;
+export default Proposal;

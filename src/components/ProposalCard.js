@@ -11,7 +11,6 @@ const Card = styled.div`
 
 const CardHeader = styled.div`
   display: flex;
-  align-items: center; /* Align title and span */
   justify-content: space-between;
   margin-bottom: 8px;
 `;
@@ -19,7 +18,6 @@ const CardHeader = styled.div`
 const CardTitle = styled.h3`
   font-size: 14px;
   font-weight: 600;
-  margin-right: 8px; /* Space between title and span */
 `;
 
 const TagContainer = styled.div`

@@ -8,13 +8,11 @@ const BoardContainer = styled.div`
   gap: 16px;
   padding: 16px;
   overflow-x: auto;
-  max-width: 100%; /* Fits within main page */
 `;
 
 const Column = styled.div`
   flex: 1;
   min-width: 250px;
-  max-width: calc(20% - 16px); /* Five columns */
 `;
 
 const ColumnHeader = styled.div`
@@ -22,7 +20,7 @@ const ColumnHeader = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 8px 16px;
-  border-radius: 999px;
+  border-radius: 999px; /* Pill-shaped */
   color: white;
   background-color: ${(props) =>
     props.status === "Draft"
@@ -35,7 +33,6 @@ const ColumnHeader = styled.div`
       ? "#22c55e"
       : "#ef4444"};
   margin-bottom: 8px;
-  height: 40px; /* Reduced height */
 `;
 
 const ColumnTitle = styled.h2`
