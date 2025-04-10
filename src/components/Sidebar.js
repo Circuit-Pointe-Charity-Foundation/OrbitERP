@@ -24,7 +24,7 @@ const NavContainer = styled.div`
   top: 0;
   left: 0;
   width: ${(props) =>
-    props.isOpen ? "200px" : "64px"}; // Narrower when closed
+    props.isOpen ? "230px" : "64px"}; // Narrower when closed
   height: 100vh;
   padding: 16px;
   color: white;
