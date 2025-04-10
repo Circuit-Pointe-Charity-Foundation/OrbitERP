@@ -85,6 +85,7 @@ const NavLink = styled(Link)`
   color: hsl(213, 24.3%, 94%);
   text-decoration: none;
   font-size: 16px;
+  font-weight: 500;
 
   &:hover {
     color: white;

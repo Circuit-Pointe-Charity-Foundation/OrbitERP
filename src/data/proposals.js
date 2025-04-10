@@ -2,7 +2,8 @@ export const proposals = [
   {
     id: 1,
     status: "Draft",
-    title: "#CodeForTomorrow",
+    title: "CodeForTomorrow",
+    emoji: "👩‍💻",
     tags: ["Winter", "XMAS"],
     description:
       "Incorporate insights from donor feedback to enhance initial donor proposal sent.",

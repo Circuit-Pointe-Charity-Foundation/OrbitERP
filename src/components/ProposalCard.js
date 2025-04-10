@@ -1,56 +1,25 @@
 import React from "react";
 import styled from "styled-components";
 
-function getTagColors() {
-  const colors = [
-    "#ffe5f5",
-    "#e2d6ff",
-    "#d6fff0",
-    "#ffefd6",
-    "#ffe5e5",
-    "#d6ffe9",
-  ];
+// List of tag background colors
+const colors = [
+  "#ffe5f5",
+  "#e2d6ff",
+  "#d6fff0",
+  "#ffefd6",
+  "#e2d6ff",
+  "#ffe5e5",
+  "#e2d6ff",
+  "#e2d6ff",
+  "#d6ffe9",
+  "#ffe5f5",
+  "#ffe5f5",
+];
 
-  // 1. Randomly select a background color
-  const TagBgColor = colors[Math.floor(Math.random() * colors.length)];
-
-  // 2. Darken it for the text color
-  const darkenColor = (hex, factor = 0.5) => {
-    hex = hex.replace("#", "");
-    const r = Math.max(
-      0,
-      Math.floor(parseInt(hex.substring(0, 2), 16) * factor)
-    );
-    const g = Math.max(
-      0,
-      Math.floor(parseInt(hex.substring(2, 4), 16) * factor)
-    );
-    const b = Math.max(
-      0,
-      Math.floor(parseInt(hex.substring(4, 6), 16) * factor)
-    );
-    return `#${r.toString(16).padStart(2, "0")}${g
-      .toString(16)
-      .padStart(2, "0")}${b.toString(16).padStart(2, "0")}`;
-  };
-
-  const TagTxtColor = darkenColor(TagBgColor);
-
-  return { TagBgColor, TagTxtColor };
-}
-
-// Base Tag component with props
-const Tag = styled.span`
-  height: 22px;
-  width: fit-content;
-  padding: 4px 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 8px;
-  font-size: 11px;
-  font-weight: 600;
-`;
+const getRandomColor = () => {
+  const randomIndex = Math.floor(Math.random() * colors.length);
+  return colors[randomIndex];
+};
 
 const Card = styled.div`
   background-color: white;
@@ -77,9 +46,25 @@ const TagContainer = styled.div`
   margin-bottom: 8px;
 `;
 
+const Tag = styled.span`
+  height: 22px;
+  width: fit-content;
+  background-color: ${(props) => props.color || "#ffe5f5"};
+  padding: 4px 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: inherit;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: bold;
+`;
+
 const Description = styled.p`
   color: #6b7280;
-  font-size: 12px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
   margin-bottom: 8px;
 `;
 
@@ -123,14 +108,11 @@ const ProposalCard = ({ proposal }) => {
         <span> {proposal.emoji}</span>
       </CardHeader>
       <TagContainer>
-        {proposal.tags.map((tag, index) => {
-          const { TagBgColor, TagTxtColor } = getTagColors();
-          return (
-            <Tag key={index} bgcolor={bgColor} textcolor={textColor}>
-              {tag}
-            </Tag>
-          );
-        })}
+        {proposal.tags.map((tag, index) => (
+          <Tag key={index} color={getRandomColor()}>
+            {tag}
+          </Tag>
+        ))}
       </TagContainer>
       <Description>{proposal.description}</Description>
       <AttachmentContainer>

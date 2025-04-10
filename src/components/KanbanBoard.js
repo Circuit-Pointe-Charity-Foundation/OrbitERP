@@ -5,64 +5,83 @@ import { proposals, statuses } from "../data/proposals";
 
 const BoardContainer = styled.div`
   display: flex;
-  gap: 16px;
-  padding: 16px;
+  gap: 8px;
+  padding: 8px;
   overflow-x: auto;
+  width: 100%;
 `;
 
 const Column = styled.div`
   flex: 1;
-  min-width: 250px;
+  min-width: 200px;
+  width: 100%;
 `;
 
 const ColumnHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 16px;
+  height: 44px;
+  padding: 8px;
   border-radius: 999px; /* Pill-shaped */
   color: white;
   background-color: ${(props) =>
     props.status === "Draft"
-      ? "#6b7280"
+      ? "#938b97"
       : props.status === "Under Review"
-      ? "#f97316"
+      ? "#e59346"
       : props.status === "Submitted"
-      ? "#3b82f6"
+      ? "#4f46e5"
       : props.status === "Accepted"
-      ? "#22c55e"
-      : "#ef4444"};
+      ? "#09c127"
+      : "#fa2d2d"};
   margin-bottom: 8px;
 `;
 
 const ColumnTitle = styled.h2`
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
 `;
 
 const Count = styled.span`
   margin-right: 8px;
+  height: 32px;
   font-size: 14px;
+  background-color: white;
+  color: black;
+  border-radius: 999px; /* Pill-shaped */
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
 `;
 
 const AddButton = styled.button`
-  background-color: white;
-  color: black;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
+  color: white;
+  background-color: transparent;
+  font-size: 36px;
+  font-weight: 300;
+  height: 32px;
+  width: 32px; // Corrected 'weight' to 'width'
   display: flex;
   align-items: center;
   justify-content: center;
   border: none;
   cursor: pointer;
+  margin-right: 4px;
+  border-radius: 50%; // Makes it perfectly round
+  transition: background-color 0.3s ease, color 0.3s ease;
+  &:hover {
+    background-color: white;
+    color: black;
+  }
 `;
 
 const ColumnBody = styled.div`
-  background-color: #f3f4f6;
-  padding: 8px;
-  border-radius: 8px;
+  padding: 0 4px;
   min-height: 200px;
+  width: 100%;
 `;
 
 const KanbanBoard = () => {
@@ -79,11 +98,18 @@ const KanbanBoard = () => {
       {statuses.map((status) => (
         <Column key={status}>
           <ColumnHeader status={status}>
-            <ColumnTitle>{status}</ColumnTitle>
-            <div style={{ display: "flex", alignItems: "center" }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
               <Count>{statusCounts[status]}</Count>
-              <AddButton>+</AddButton>
+              <ColumnTitle>{status}</ColumnTitle>
             </div>
+
+            <AddButton>+</AddButton>
           </ColumnHeader>
           <ColumnBody>
             {proposals
