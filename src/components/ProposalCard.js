@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
+import { FaRegFileAlt } from "react-icons/fa";
+import { FaLink, FaRegFolder } from "react-icons/fa6";
+
 // List of tag background colors
 const colors = [
   "#ffe5f5",
@@ -61,7 +64,7 @@ const Tag = styled.span`
 `;
 
 const Description = styled.p`
-  color: #6b7280;
+  color: #828282;
   font-size: 13px;
   font-weight: 400;
   line-height: 1.5;
@@ -71,22 +74,53 @@ const Description = styled.p`
 const AttachmentContainer = styled.div`
   display: flex;
   gap: 6px;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid rgb(218, 218, 218);
 `;
 
 const Attachment = styled.span`
-  color: #2563eb;
-  font-size: 10px;
+  color: #313131;
+  font-size: 12px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  background-color: #f3f4f6;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  &:hover {
+    background-color: #e5e7eb;
+  }
 `;
+const getAttachmentIcon = (attachment) => {
+  switch (attachment.toLowerCase()) {
+    case "folder":
+      return <FaRegFolder />;
+    case "link to overview":
+    case "link":
+    case "brief":
+      return <FaLink />;
+    case "proposal":
+    default:
+      return <FaRegFileAlt />;
+  }
+};
 
 const Footer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
 `;
 
 const Metrics = styled.div`
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   gap: 6px;
   color: #6b7280;
   font-size: 10px;
@@ -117,7 +151,9 @@ const ProposalCard = ({ proposal }) => {
       <Description>{proposal.description}</Description>
       <AttachmentContainer>
         {proposal.attachments.map((attachment, index) => (
-          <Attachment key={index}>📁 {attachment}</Attachment>
+          <Attachment key={index}>
+            {getAttachmentIcon(attachment)} {"  "} {attachment}
+          </Attachment>
         ))}
       </AttachmentContainer>
       <Footer>

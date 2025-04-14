@@ -7,7 +7,7 @@ export const proposals = [
     tags: ["Winter", "XMAS"],
     description:
       "Incorporate insights from donor feedback to enhance initial donor proposal sent.",
-    attachments: ["Folder", "Brief"],
+    attachments: ["Folder", "Link to overview", "Brief", "Proposal"],
     assignedTo: "Alex Turner",
     comments: 3,
     likes: 32,
